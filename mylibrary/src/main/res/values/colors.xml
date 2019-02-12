@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="c333333">#333333</color>
+    <color name="cffc90e">#ffc90e</color>
+    <color name="c8fededed">#8fededed</color>
+    <color name="cff0d24">#ff0d24</color>
+    <color name="white">#ffffff</color>
+    <color name="c1d6cb1">#1d6cb1</color>
+    <color name="c797979">#797979</color>
+    <color name="c979797">#979797</color>
+    <color name="c04b692">#04b692</color>
+    <color name="ceeeeee">#eeeeee</color>
+    <color name="cbebebe">#bebebe</color>
+    <color name="c50black">#50000000</color>
+    <color name="c20black">#20000000</color>
+    <color name="cffdae2">#ffdae2</color>
+    <color name="cdaf1ff">#daf1ff</color>
+    <color name="cffe692">#ffe692</color>
+    <color name="ce56d99">#e56d99</color>
+    <color name="ced0080">#ed0080</color>
+    <color name="ceewhite">#eeffffff</color>
+    
+    <!--hebaobei-->
+    <color name="c2a7ffc">#2a7ffc</color>
+    <color name="c4ca2f2">#4ca2f2</color>
+</resources>
