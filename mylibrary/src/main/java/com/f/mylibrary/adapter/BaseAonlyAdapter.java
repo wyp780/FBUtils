@@ -7,9 +7,14 @@ import android.databinding.ViewDataBinding;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
+import com.f.mylibrary.R;
+import com.f.mylibrary.databinding.NoDataBinding;
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -25,6 +30,8 @@ public abstract class BaseAonlyAdapter<T> extends RecyclerView.Adapter<RecyclerV
         this.context = context;
         this.layoutId = layoutId;
         this.itemBinding = itemBinding;
+
+        itemsChangeCallback = new ListChangedCallback();
     }
 
     public void setList(List<T> list) {
@@ -43,6 +50,10 @@ public abstract class BaseAonlyAdapter<T> extends RecyclerView.Adapter<RecyclerV
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+        if (i == 999) {
+            View emptyView = LayoutInflater.from(context).inflate(R.layout.no_data, viewGroup, false);
+            return new BaseViewHolder(emptyView);
+        }
         BaseViewHolder viewHolder;
         ViewDataBinding binding = itemBinding.get(getItemViewType(i));
         binding = DataBindingUtil.inflate(LayoutInflater.from(context), layoutId[getItemViewType(i)],
@@ -53,14 +64,27 @@ public abstract class BaseAonlyAdapter<T> extends RecyclerView.Adapter<RecyclerV
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        onBind(viewHolder, list.get(i), i);
+        if(getItemViewType(i) != 999){
+            onBind(viewHolder, list.get(i), i);
+        }
     }
 
-    abstract void onBind(RecyclerView.ViewHolder viewHolder, T t, int position);
+    public abstract void onBind(RecyclerView.ViewHolder viewHolder, T t, int position);
 
     @Override
     public int getItemCount() {
+        if (list.size() == 0) {
+            return 1;
+        }
         return list.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        if (list.size() == 0) {
+            return 999;
+        }
+        return 0;
     }
 
     @Override
