@@ -25,6 +25,7 @@ public abstract class BaseAonlyAdapter<T> extends RecyclerView.Adapter<RecyclerV
     private List<ViewDataBinding> itemBinding = new ArrayList<>();
     private ObservableArrayList<T> list = new ObservableArrayList<>();
     protected ListChangedCallback itemsChangeCallback;
+    public boolean showNoData = false;
 
     public BaseAonlyAdapter(Context context, int[] layoutId, List<ViewDataBinding> itemBinding) {
         this.context = context;
@@ -47,6 +48,10 @@ public abstract class BaseAonlyAdapter<T> extends RecyclerView.Adapter<RecyclerV
         return list;
     }
 
+    public void setShowNoData(boolean b) {
+        this.showNoData = b;
+    }
+
     @NonNull
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -64,7 +69,7 @@ public abstract class BaseAonlyAdapter<T> extends RecyclerView.Adapter<RecyclerV
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        if(getItemViewType(i) != 999){
+        if (getItemViewType(i) != 999) {
             onBind(viewHolder, list.get(i), i);
         }
     }
@@ -73,7 +78,7 @@ public abstract class BaseAonlyAdapter<T> extends RecyclerView.Adapter<RecyclerV
 
     @Override
     public int getItemCount() {
-        if (list.size() == 0) {
+        if (list.size() == 0 && showNoData) {
             return 1;
         }
         return list.size();
@@ -81,7 +86,7 @@ public abstract class BaseAonlyAdapter<T> extends RecyclerView.Adapter<RecyclerV
 
     @Override
     public int getItemViewType(int position) {
-        if (list.size() == 0) {
+        if (list.size() == 0 && showNoData) {
             return 999;
         }
         return 0;

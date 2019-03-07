@@ -14,14 +14,14 @@ public abstract class BaseMultipleAdapter<T> extends BaseAonlyAdapter<T> {
 
     @Override
     public void onBind(RecyclerView.ViewHolder viewHolder, T t, int position) {
-        if(getItemViewType(position) != 999){
+        if (getItemViewType(position) != 999) {
             onBinds(viewHolder, t, position, getItemViewType(position));
         }
     }
 
     @Override
     public int getItemViewType(int position) {
-        if(getList().size() == 0){
+        if (getList().size() == 0 && showNoData) {
             return 999;
         }
         return getItemType(position);
